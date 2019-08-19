@@ -1,0 +1,27 @@
+<div id="loginForm" align="center">
+    <form [formGroup]="loginForm">
+        <input type="text" placeholder="username" formControlName="username">
+        <button class="smallButton" (click)="findUser();">Login</button>
+    </form>
+    <button class="smallButton" (click)="findAll();">All Users</button>
+</div>
+<div *ngIf="oneUser" id="displayUser" align="center" class="card">
+    <p>Username: {{oneUser.username}}</p>
+    <p>First name: {{oneUser.fname}}</p>
+    <p>Last name: {{oneUser.lname}}</p>
+    <p>Age: {{oneUser.age}}</p>
+    <button class="smallButton" (click) = "deleteCurrent();">Delete User</button>
+    <button class="smallButton" (click) = "editCurrent();">Edit</button>
+    <div *ngIf="updateOne">
+        <form [formGroup]="updateForm">
+            <input type="text" placeholder="first name" formControlName="fname">
+            <input type="text" placeholder="last name" formControlName="lname">
+            <input type="number" placeholder="age" formControlName="age">
+            <button class="smallButton" (click) = "updateCurrent();;">Save Changes</button>
+            <button class="smallButton" (click) = "goFalse();">Cancel Changes</button>
+        </form>
+    </div>
+</div>
+<div align="center">
+    <button class="smallButton" (click) = "goToCreate();">Create User</button>
+</div>

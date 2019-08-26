@@ -12,7 +12,6 @@ import { ChangePageService } from 'src/app/shared-module/services/change-page.se
 export class CreateComponent implements OnInit {
 
   createUserForm = new FormGroup({
-    username: new FormControl(''),
     fname: new FormControl(''),
     lname: new FormControl(''),
     age: new FormControl('')

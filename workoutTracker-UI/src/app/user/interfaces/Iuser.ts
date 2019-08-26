@@ -4,8 +4,7 @@ export interface Iuser {
     lname: string,
     age: number,
     admin: boolean,
-    _id: string,
-    _v: number
+    id: number
 }
 
 export class User implements Iuser{
@@ -14,6 +13,5 @@ export class User implements Iuser{
     lname: string;
     age: number;
     admin: boolean;
-    _id: string;
-    _v: number;
+    id: number;
 }

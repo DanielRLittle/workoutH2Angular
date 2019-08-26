@@ -32,7 +32,7 @@ export class ReadOneComponent implements OnInit {
   });
 
   findUser() {
-    this.serv.getOneUser(this.loginForm.value).subscribe((x) =>{
+    this.serv.getByUsername(this.loginForm.value).subscribe((x) =>{
       console.log(x);
       this.oneUser = x;
       this.userKeys = Object.keys(x || {});
@@ -46,7 +46,7 @@ export class ReadOneComponent implements OnInit {
   }
 
   deleteCurrent() {
-    this.serv.deleteCurrentUser(this.oneUser._id).subscribe(() => {
+    this.serv.deleteCurrentUser(this.oneUser.id).subscribe(() => {
       console.log("user deleted");
       this.findUser();
     });
@@ -58,7 +58,7 @@ export class ReadOneComponent implements OnInit {
 
   updateCurrent() {
     const user: Iuser = this.updateForm.value;
-    this.serv.updateCurrentUser(this.oneUser.username, user);
+    this.serv.updateCurrentUser(this.oneUser.id, user);
     this.findUser();
   }
 

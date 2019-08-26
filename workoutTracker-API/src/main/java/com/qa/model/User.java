@@ -19,6 +19,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String userName;
+	private int age;
 	
 	@OneToMany(cascade = (CascadeType.ALL), fetch = (FetchType.EAGER))
 	@JoinColumn(name = "User_id")
@@ -48,6 +49,15 @@ public class User {
 	public String getLastName() {
 		return lastName;
 	}
+	
+	public int getAge() {
+		return this.age;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}

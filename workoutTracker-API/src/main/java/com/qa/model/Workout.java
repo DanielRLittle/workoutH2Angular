@@ -1,10 +1,14 @@
 package com.qa.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Workout {
@@ -16,6 +20,11 @@ public class Workout {
 	private String workoutDescription;
 	private LocalDate workoutDate;
 	
+	@ManyToMany
+	@JoinTable(name = "WORKOUT_EXERCISE", 
+		joinColumns = {@JoinColumn(name = "WORKOUT_ID")}, 
+		inverseJoinColumns = {@JoinColumn(name = "EXERCISE_ID")})
+	private Set<Exercise> exercises;
 	
 	public int getId() {
 		return id;
@@ -47,6 +56,13 @@ public class Workout {
 	
 	public void setWorkoutDate(LocalDate workoutDate) {
 		this.workoutDate = workoutDate;
+	}
+	
+	public Set<Exercise> getExercises() {
+		return exercises;
+	}
+	public void setExercises(Set<Exercise> exercises) {
+		this.exercises = exercises;
 	}
 	
 }

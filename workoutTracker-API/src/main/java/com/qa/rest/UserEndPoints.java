@@ -30,7 +30,7 @@ public class UserEndPoints {
 	@GET
 	@Path("/users")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAll() {
+	public Response getAllUsers() {
 		List<User> list = ur.readAll();
 		if (list.isEmpty()) {
 			return Response.noContent().build();

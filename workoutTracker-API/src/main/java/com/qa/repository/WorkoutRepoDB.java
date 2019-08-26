@@ -11,7 +11,7 @@ import com.qa.model.User;
 import com.qa.model.Workout;
 
 @Transactional(value = TxType.SUPPORTS)
-public class WorkoutRepoDB implements WorkoutRepo{
+public class WorkoutRepoDB implements WorkoutRepo {
 	
 	
 	@PersistenceContext(unitName = "myPU")

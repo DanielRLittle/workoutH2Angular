@@ -1,6 +1,8 @@
 package com.qa.rest;
 
 import java.util.List;
+import java.util.Set;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -13,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.qa.model.Exercise;
 import com.qa.model.User;
 import com.qa.model.Workout;
 import com.qa.repository.UserRepo;
@@ -26,6 +29,15 @@ public class WorkoutEndPoints {
 	
 	@Inject
 	UserRepo ur;
+	
+	public Response checkWorkout(int id) {
+		if (wr.findWorkout(id).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		else {
+			return null;
+		}
+	}
 	
 	@GET
 	@Path("/workouts/{workout_id}")
@@ -58,7 +70,7 @@ public class WorkoutEndPoints {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		User user = wr.addWorkout(workout, id);
-		return Response.ok(user).build();
+		return Response.accepted(user).build();
 	}
 	
 	@PUT
@@ -70,7 +82,17 @@ public class WorkoutEndPoints {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		Workout w = wr.changeWorkout(id, newWorkout);
-		return Response.ok(w).build();
+		return Response.accepted(w).build();
+	}
+	
+	@PUT
+	@Consumes({"application/json"})
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/workouts/addExercise/{workout_id}")
+	public Response addExercises(@PathParam("workout_id") int id, Set<Exercise> exercises) {
+		this.checkWorkout(id);
+		Workout workout = wr.addExercises(id, exercises);
+		return Response.accepted(workout).build();
 	}
 	
 	@DELETE

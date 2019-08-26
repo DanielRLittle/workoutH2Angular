@@ -80,7 +80,7 @@ public class UserEndPoints {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		User user2 = ur.updateUser(id, user);
-		return Response.ok(user2).build();
+		return Response.accepted(user2).build();
 	}
 	
 	@DELETE

@@ -60,8 +60,14 @@ public class Workout {
 	public Set<ExercisesForWorkout> getExercises() {
 		return exercises;
 	}
-	public void setExercises(Set<ExercisesForWorkout> exercises) {
-		this.exercises = exercises;
+	
+	public Set<ExercisesForWorkout> addExercises(ExercisesForWorkout exercise) {
+		exercises.add(exercise);
+		return exercises;
 	}
 	
+	public Set<ExercisesForWorkout> removeExercises(ExercisesForWorkout exercise) {
+		exercises.remove(exercise);
+		return exercises;
+	}
 }

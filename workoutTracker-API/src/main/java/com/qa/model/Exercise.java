@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Exercise {
@@ -15,8 +15,8 @@ public class Exercise {
 	private int id;
 	private String exerciseName;
 	
-	@ManyToMany(mappedBy = "exercises")
-	private Set<Workout> workouts;
+	@OneToMany(mappedBy = "exercise")
+	private Set<ExercisesForWorkout> exercisesForWorkouts;
 	
 	public int getId() {
 		return id;
@@ -32,6 +32,12 @@ public class Exercise {
 	}
 	public void setAll(Exercise newExercise) {
 		this.exerciseName = newExercise.exerciseName;
+	}
+	public Set<ExercisesForWorkout> getExercisesForWorkouts() {
+		return exercisesForWorkouts;
+	}
+	public void setExercisesForWorkouts(Set<ExercisesForWorkout> exercisesForWorkouts) {
+		this.exercisesForWorkouts = exercisesForWorkouts;
 	}
 	
 }

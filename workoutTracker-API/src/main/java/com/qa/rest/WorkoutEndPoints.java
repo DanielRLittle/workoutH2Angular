@@ -1,7 +1,6 @@
 package com.qa.rest;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -15,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.qa.model.Exercise;
 import com.qa.model.User;
 import com.qa.model.Workout;
 import com.qa.repository.UserRepo;
@@ -83,16 +81,6 @@ public class WorkoutEndPoints {
 		}
 		Workout w = wr.changeWorkout(id, newWorkout);
 		return Response.accepted(w).build();
-	}
-	
-	@PUT
-	@Consumes({"application/json"})
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/workouts/addExercise/{workout_id}")
-	public Response addExercises(@PathParam("workout_id") int id, Set<Exercise> exercises) {
-		this.checkWorkout(id);
-		Workout workout = wr.addExercises(id, exercises);
-		return Response.accepted(workout).build();
 	}
 	
 	@DELETE

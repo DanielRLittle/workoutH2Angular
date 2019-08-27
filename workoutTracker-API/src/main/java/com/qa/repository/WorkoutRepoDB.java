@@ -1,7 +1,6 @@
 package com.qa.repository;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,7 +8,6 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
-import com.qa.model.Exercise;
 import com.qa.model.User;
 import com.qa.model.Workout;
 
@@ -43,17 +41,6 @@ public class WorkoutRepoDB implements WorkoutRepo {
 		Workout w = findWorkout(id);
 		w.setAll(newWorkout);
 		return w;
-	}
-	
-	@Transactional(value = TxType.REQUIRED)
-	public Workout addExercises(int id, Set<Exercise> exercises) {
-		Workout workout = findWorkout(id);
-		Set<Exercise> newExercises = workout.getExercises();
-		for (Exercise exercise: exercises) {
-			newExercises.add(exercise);
-		}
-		workout.setExercises(newExercises);
-		return workout;
 	}
 
 	@Transactional(value = TxType.REQUIRED)

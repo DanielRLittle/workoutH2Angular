@@ -3,12 +3,13 @@ package com.qa.model;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Workout {
@@ -20,11 +21,9 @@ public class Workout {
 	private String workoutDescription;
 	private LocalDate workoutDate;
 	
-	@ManyToMany
-	@JoinTable(name = "WORKOUT_EXERCISE", 
-		joinColumns = {@JoinColumn(name = "WORKOUT_ID")}, 
-		inverseJoinColumns = {@JoinColumn(name = "EXERCISE_ID")})
-	private Set<Exercise> exercises;
+	@OneToMany(cascade = (CascadeType.ALL), fetch = (FetchType.EAGER))
+	@JoinColumn(name = "Workout_Id")
+	private Set<ExercisesForWorkout> exercises;
 	
 	public int getId() {
 		return id;
@@ -58,10 +57,10 @@ public class Workout {
 		this.workoutDate = workoutDate;
 	}
 	
-	public Set<Exercise> getExercises() {
+	public Set<ExercisesForWorkout> getExercises() {
 		return exercises;
 	}
-	public void setExercises(Set<Exercise> exercises) {
+	public void setExercises(Set<ExercisesForWorkout> exercises) {
 		this.exercises = exercises;
 	}
 	

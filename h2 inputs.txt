@@ -1,0 +1,4 @@
+select * from user;
+select * from workout;
+select * from exercise;
+select * from workout_exercise;

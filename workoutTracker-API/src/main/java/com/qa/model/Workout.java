@@ -47,6 +47,8 @@ public class Workout {
 	public void setAll(Workout newWorkout) {
 		this.workoutName = newWorkout.workoutName;
 		this.workoutDescription = newWorkout.workoutDescription;
+		this.workoutDate = newWorkout.workoutDate;
+		this.exercises = newWorkout.exercises;
 	}
 	
 	public LocalDate getWorkoutDate() {

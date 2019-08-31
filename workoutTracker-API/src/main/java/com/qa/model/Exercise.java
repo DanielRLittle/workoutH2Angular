@@ -40,5 +40,15 @@ public class Exercise {
 		this.exercisesForWorkouts = exercisesForWorkouts;
 	}
 	
+	public Set<ExercisesForWorkout> addExercises(ExercisesForWorkout exercise) {
+		exercisesForWorkouts.add(exercise);
+		return exercisesForWorkouts;
+	}
+	
+	public Set<ExercisesForWorkout> removeExercises(ExercisesForWorkout exercise) {
+		exercisesForWorkouts.remove(exercise);
+		return exercisesForWorkouts;
+	}
+	
 }
 	

@@ -48,5 +48,4 @@ public class WorkoutRepoDB implements WorkoutRepo {
 		em.remove(findWorkout(id));
 	}
 	
-	
 }

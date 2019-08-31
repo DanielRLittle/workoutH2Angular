@@ -27,6 +27,14 @@ public class ExercisesForWorkout {
 	private int totalReps;
 	
 	private BigDecimal repsPerSet;
+	
+	public void setAll(ExercisesForWorkout newExercise) {
+		this.exercise = newExercise.exercise;
+		this.weight = newExercise.weight;
+		this.sets = newExercise.sets;
+		this.totalReps = newExercise.totalReps;
+		this.setRepsPerSet();
+	}
 
 	public int getId() {
 		return id;

@@ -2,12 +2,15 @@ package com.qa.repository;
 
 import java.util.List;
 
+import com.qa.model.Exercise;
 import com.qa.model.ExercisesForWorkout;
 import com.qa.model.Workout;
 
 public interface ExercisesForWorkoutRepo {
 	
-	public Workout addExercise(ExercisesForWorkout e, int id);
+	public Exercise addExercise(ExercisesForWorkout e, String exerciseName);
+	
+	public Workout addExerciseToWorkout(ExercisesForWorkout e, int id, String exerciseName);
 	
 	public ExercisesForWorkout findExercise(int id);
 	

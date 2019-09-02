@@ -54,7 +54,7 @@ public class ExercisesForWorkoutRepoDB implements ExercisesForWorkoutRepo {
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public void removeExercise(int id) {
+	public void deleteExercise(int id) {
 		em.remove(findExercise(id));
 	}
 	

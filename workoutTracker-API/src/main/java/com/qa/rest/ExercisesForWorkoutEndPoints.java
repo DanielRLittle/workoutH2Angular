@@ -1,7 +1,10 @@
 package com.qa.rest;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -53,6 +56,35 @@ public class ExercisesForWorkoutEndPoints {
 		checkExercise(id);
 		ExercisesForWorkout efw = efwr.findExercise(id);
 		return Response.ok(efw).build();
+	}
+	
+	@GET
+	@Path("/efw/{workout_id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getExerciseByWorkout(@PathParam("workout_id") int id) {
+		if (efwr.findExerciseByWorkout(id).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		List<ExercisesForWorkout> efw = efwr.findExerciseByWorkout(id);
+		return Response.ok(efw).build();
+	}
+	
+	@PUT
+	@Consumes({"application/json"})
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/efw/{exercisesForWorkout_id}")
+	public Response updateExercise(ExercisesForWorkout newExercise, @PathParam("exercisesForWorkout_id") int id) {
+		checkExercise(id);
+		ExercisesForWorkout efw = efwr.changeExerciseDetails(id, newExercise);
+		return Response.accepted(efw).build();
+	}
+	
+	@DELETE
+	@Path("/efw/{exercisesForWorkout_id}")
+	public Response removeExercise(@PathParam("exercisesForWorkout_id") int id) {
+		checkExercise(id);
+		efwr.deleteExercise(id);
+		return Response.noContent().build();
 	}
 	
 }

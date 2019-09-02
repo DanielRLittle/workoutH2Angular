@@ -18,6 +18,6 @@ public interface ExercisesForWorkoutRepo {
 	
 	public ExercisesForWorkout changeExerciseDetails(int id, ExercisesForWorkout newExercise);
 	
-	public void removeExercise(int id);
+	public void deleteExercise(int id);
 
 }

@@ -3,6 +3,7 @@ package com.qa.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,7 +16,7 @@ public class Exercise {
 	private int id;
 	private String exerciseName;
 	
-	@OneToMany(mappedBy = "exercise")
+	@OneToMany(mappedBy = "exercise", fetch = FetchType.EAGER)
 	private Set<ExercisesForWorkout> exercisesForWorkouts;
 	
 	public int getId() {

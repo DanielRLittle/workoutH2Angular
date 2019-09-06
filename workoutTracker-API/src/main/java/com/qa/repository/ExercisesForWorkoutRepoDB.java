@@ -21,15 +21,21 @@ public class ExercisesForWorkoutRepoDB implements ExercisesForWorkoutRepo {
 	
 	@Transactional(value = TxType.REQUIRED)
 	public Exercise addExercise(ExercisesForWorkout efw, String exerciseName) {
+		System.out.println(2.1);
 		Exercise exercise = er.readExercise(exerciseName);
+		System.out.println(2.2);
 		exercise.addExercises(efw);
+		System.out.println(2.3);
 		return exercise;
 	}
 
 	@Transactional(value = TxType.REQUIRED)
 	public Workout addExerciseToWorkout(ExercisesForWorkout efw, int id, String exerciseName) {
+		System.out.println("testLine1");
 		Workout workout = em.find(Workout.class, id);
+		System.out.println("testLine2");
 		addExercise(efw, exerciseName);
+		System.out.println("testLine3");
 		workout.addExercises(efw);
 		return workout;
 	}

@@ -42,10 +42,10 @@ public class ExercisesForWorkoutEndPoints {
 	@PUT
 	@Consumes({"application/json"})
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/efw/{workout_id}")
-	public Response addingExercise(ExercisesForWorkout efw, @PathParam("workout_id") int id) {
-		checkExercise(id);
-		Workout workout = efwr.addExerciseToWorkout(efw, id, efw.getExercise().getExerciseName());
+	@Path("/efw/{workout_id}/{exerciseName}")
+	public Response addingExercise(ExercisesForWorkout efw, @PathParam("workout_id") int workoutId
+			, @PathParam("exerciseName") String exerciseName) {
+		Workout workout = efwr.addExerciseToWorkout(efw, workoutId, exerciseName);
 		return Response.accepted(workout).build();
 	}
 	

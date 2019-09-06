@@ -27,7 +27,7 @@ public class ExerciseRepoDB implements ExerciseRepo {
 		return exercise;
 	}
 
-	public Exercise readExercise(String exerciseName) {
+	public Exercise readExerciseByName(String exerciseName) {
 		TypedQuery<Exercise> tQ = em.createQuery(
 				"select exercise from Exercise exercise where exerciseName = '" + exerciseName + "'", Exercise.class);
 		Exercise exercise = tQ.getSingleResult();

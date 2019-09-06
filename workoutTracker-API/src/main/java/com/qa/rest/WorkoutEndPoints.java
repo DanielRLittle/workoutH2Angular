@@ -37,6 +37,18 @@ public class WorkoutEndPoints {
 		}
 	}
 	
+	@PUT
+	@Consumes({"application/json"})
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/workout/{user_id}")
+	public Response addingWorkout(Workout workout, @PathParam("user_id") int id) {
+		if (ur.readUser(id).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		User user = wr.addWorkout(workout, id);
+		return Response.accepted(user).build();
+	}
+	
 	@GET
 	@Path("/workouts/{workout_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -57,18 +69,6 @@ public class WorkoutEndPoints {
 		}
 		List<Workout> w = wr.findWorkoutByUser(id);
 		return Response.ok(w).build(); 
-	}
-	
-	@PUT
-	@Consumes({"application/json"})
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/workout/{user_id}")
-	public Response addingWorkout(Workout workout, @PathParam("user_id") int id) {
-		if (ur.readUser(id).equals(null)) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
-		User user = wr.addWorkout(workout, id);
-		return Response.accepted(user).build();
 	}
 	
 	@PUT

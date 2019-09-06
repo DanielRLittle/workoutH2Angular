@@ -63,14 +63,14 @@ public class ExerciseEndPoints {
 	}
 	
 	@GET
-	@Path("/exercises/{exerciseName}")
+	@Path("/exercises/exerciseName/{exerciseName}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getExerciseByName(@PathParam("exerciseName") String name) {
-		if (er.readExercise(name).equals(null)) {
+		if (er.readExerciseByName(name).equals(null)) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		
-		Exercise exercise = er.readExercise(name);
+		Exercise exercise = er.readExerciseByName(name);
 		return Response.ok(exercise).build();
 	}
 	

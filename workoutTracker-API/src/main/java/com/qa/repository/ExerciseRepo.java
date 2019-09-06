@@ -10,7 +10,7 @@ public interface ExerciseRepo {
 	
 	public Exercise readExercise(int id);
 	
-	public Exercise readExercise(String exerciseName);
+	public Exercise readExerciseByName(String exerciseName);
 	
 	public List<Exercise> readAll();
 	

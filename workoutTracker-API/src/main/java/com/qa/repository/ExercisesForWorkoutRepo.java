@@ -8,9 +8,11 @@ import com.qa.model.Workout;
 
 public interface ExercisesForWorkoutRepo {
 	
-	public Exercise addExercise(ExercisesForWorkout e, String exerciseName);
+	public Exercise addExercise(ExercisesForWorkout e, String exerciseId);
 	
-	public Workout addExerciseToWorkout(ExercisesForWorkout e, int id, String exerciseName);
+	public Workout addExerciseToWorkout(ExercisesForWorkout e, int id);
+	
+	public Workout addingBothExerciseAndWorkout(ExercisesForWorkout efw, int workoutId, String exerciseName);
 	
 	public ExercisesForWorkout findExercise(int id);
 	

@@ -21,21 +21,31 @@ public class ExercisesForWorkoutRepoDB implements ExercisesForWorkoutRepo {
 	
 	@Transactional(value = TxType.REQUIRED)
 	public Exercise addExercise(ExercisesForWorkout efw, String exerciseName) {
-		System.out.println(2.1);
-		Exercise exercise = er.readExercise(exerciseName);
-		System.out.println(2.2);
+		System.out.println(1.1);
+		System.out.println(exerciseName);
+		TypedQuery<Exercise> tQ = em.createQuery(
+				"select exercise from Exercise exercise where exerciseName = '" + exerciseName + "'", Exercise.class);
+		Exercise exercise = tQ.getSingleResult();
+		System.out.println(1.2);
 		exercise.addExercises(efw);
-		System.out.println(2.3);
+		System.out.println(1.3);
 		return exercise;
 	}
 
 	@Transactional(value = TxType.REQUIRED)
-	public Workout addExerciseToWorkout(ExercisesForWorkout efw, int id, String exerciseName) {
-		System.out.println("testLine1");
+	public Workout addExerciseToWorkout(ExercisesForWorkout efw, int id) {
 		Workout workout = em.find(Workout.class, id);
-		System.out.println("testLine2");
-		addExercise(efw, exerciseName);
-		System.out.println("testLine3");
+		workout.addExercises(efw);
+		return workout;
+	}
+	
+	@Transactional(value = TxType.REQUIRED)
+	public Workout addingBothExerciseAndWorkout(ExercisesForWorkout efw, int workoutId, String exerciseName) {
+		Workout workout = em.find(Workout.class, workoutId);
+		TypedQuery<Exercise> tQ = em.createQuery(
+				"select exercise from Exercise exercise where exerciseName = '" + exerciseName + "'", Exercise.class);
+		Exercise exercise = tQ.getSingleResult();
+		exercise.addExercises(efw);
 		workout.addExercises(efw);
 		return workout;
 	}

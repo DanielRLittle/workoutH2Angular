@@ -17,7 +17,6 @@ public class ExercisesForWorkout {
 	private int id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "EXERCISE_ID")
 	private Exercise exercise;
 	
 	private BigDecimal weight;

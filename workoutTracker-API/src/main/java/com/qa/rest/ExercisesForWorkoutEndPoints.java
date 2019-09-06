@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.qa.model.Exercise;
 import com.qa.model.ExercisesForWorkout;
 import com.qa.model.Workout;
 import com.qa.repository.ExerciseRepo;
@@ -42,11 +43,38 @@ public class ExercisesForWorkoutEndPoints {
 	@PUT
 	@Consumes({"application/json"})
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/efw/{workout_id}/{exerciseName}")
-	public Response addingExercise(ExercisesForWorkout efw, @PathParam("workout_id") int workoutId
-			, @PathParam("exerciseName") String exerciseName) {
-		Workout workout = efwr.addExerciseToWorkout(efw, workoutId, exerciseName);
+	@Path("/efw/{workout_id}")
+	public Response addingExercise(ExercisesForWorkout efw, @PathParam("workout_id") int workoutId) {
+		Workout workout = efwr.addExerciseToWorkout(efw, workoutId);
 		return Response.accepted(workout).build();
+	}
+	
+	@PUT
+	@Consumes({"application/json"})
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/efw/both/{workout_id}/{exercise_name}")
+	public Response addingExerciseAndWorkout(@PathParam("workout_id") int workoutId,
+			@PathParam("exercise_name") String exerciseName, ExercisesForWorkout efw) {
+		if (wr.findWorkout(workoutId).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		else if (er.readExerciseByName(exerciseName).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		Workout workout = efwr.addingBothExerciseAndWorkout(efw, workoutId, exerciseName);
+		return Response.accepted(workout).build();
+	}
+	@PUT
+	@Consumes({"application/json"})
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/efw/exercises/{exercise_id}/{exercisesForWorkout_id}")
+	public Response completingExerciseDetails(@PathParam("exercise_id") String exerciseName, 
+			@PathParam("exercisesForWorkout_id") int id) {
+		System.out.println("test1");
+		System.out.println(exerciseName);
+		Exercise exercise = efwr.addExercise(efwr.findExercise(id), exerciseName);
+		System.out.println(5);
+		return Response.accepted(exercise).build();
 	}
 	
 	@GET

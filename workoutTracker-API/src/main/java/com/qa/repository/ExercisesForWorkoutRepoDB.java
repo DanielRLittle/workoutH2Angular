@@ -20,27 +20,8 @@ public class ExercisesForWorkoutRepoDB implements ExercisesForWorkoutRepo {
 	ExerciseRepo er;
 	
 	@Transactional(value = TxType.REQUIRED)
-	public Exercise addExercise(ExercisesForWorkout efw, String exerciseName) {
-		System.out.println(1.1);
-		System.out.println(exerciseName);
-		TypedQuery<Exercise> tQ = em.createQuery(
-				"select exercise from Exercise exercise where exerciseName = '" + exerciseName + "'", Exercise.class);
-		Exercise exercise = tQ.getSingleResult();
-		System.out.println(1.2);
-		exercise.addExercises(efw);
-		System.out.println(1.3);
-		return exercise;
-	}
-
-	@Transactional(value = TxType.REQUIRED)
-	public Workout addExerciseToWorkout(ExercisesForWorkout efw, int id) {
-		Workout workout = em.find(Workout.class, id);
-		workout.addExercises(efw);
-		return workout;
-	}
-	
-	@Transactional(value = TxType.REQUIRED)
 	public Workout addingBothExerciseAndWorkout(ExercisesForWorkout efw, int workoutId, String exerciseName) {
+		efw.setRepsPerSet();
 		Workout workout = em.find(Workout.class, workoutId);
 		TypedQuery<Exercise> tQ = em.createQuery(
 				"select exercise from Exercise exercise where exerciseName = '" + exerciseName + "'", Exercise.class);

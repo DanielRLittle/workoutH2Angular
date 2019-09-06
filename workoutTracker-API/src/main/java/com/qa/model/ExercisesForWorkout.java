@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -16,8 +15,8 @@ public class ExercisesForWorkout {
 	@GeneratedValue
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Exercise exercise;
+//	@ManyToOne
+//	private Exercise exercise;
 	
 	private BigDecimal weight;
 	
@@ -28,7 +27,6 @@ public class ExercisesForWorkout {
 	private BigDecimal repsPerSet;
 	
 	public void setAll(ExercisesForWorkout newExercise) {
-		this.exercise = newExercise.exercise;
 		this.weight = newExercise.weight;
 		this.sets = newExercise.sets;
 		this.totalReps = newExercise.totalReps;
@@ -43,13 +41,13 @@ public class ExercisesForWorkout {
 		this.id = id;
 	}
 
-	public Exercise getExercise() {
-		return exercise;
-	}
-
-	public void setExercise(Exercise exercise) {
-		this.exercise = exercise;
-	}
+//	public Exercise getExercise() {
+//		return exercise;
+//	}
+//
+//	public void setExercise(Exercise exercise) {
+//		this.exercise = exercise;
+//	}
 
 	public BigDecimal getWeight() {
 		return weight;

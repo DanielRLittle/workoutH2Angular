@@ -51,6 +51,7 @@ public class ExercisesForWorkoutEndPoints {
 		else if (er.readExerciseByName(exerciseName).equals(null)) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
+		efw.setExerciseName(exerciseName);
 		Workout workout = efwr.addingBothExerciseAndWorkout(efw, workoutId, exerciseName);
 		return Response.accepted(workout).build();
 		
@@ -79,8 +80,9 @@ public class ExercisesForWorkoutEndPoints {
 	@PUT
 	@Consumes({"application/json"})
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/efw/{exercisesForWorkout_id}")
-	public Response updateExercise(ExercisesForWorkout newExercise, @PathParam("exercisesForWorkout_id") int id) {
+	@Path("/efw/{exercisesForWorkout_id}/{exercise_name}")
+	public Response updateExercise(ExercisesForWorkout newExercise, @PathParam("exercisesForWorkout_id") int id,
+			@PathParam("exercise_name") String exerciseName) {
 		checkExercise(id);
 		ExercisesForWorkout efw = efwr.changeExerciseDetails(id, newExercise);
 		return Response.accepted(efw).build();

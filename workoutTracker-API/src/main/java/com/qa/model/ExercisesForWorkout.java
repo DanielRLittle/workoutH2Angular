@@ -26,6 +26,8 @@ public class ExercisesForWorkout {
 	
 	private BigDecimal repsPerSet;
 	
+	private String exerciseName;
+	
 	public void setAll(ExercisesForWorkout newExercise) {
 		this.weight = newExercise.weight;
 		this.sets = newExercise.sets;
@@ -80,6 +82,14 @@ public class ExercisesForWorkout {
 	public void setRepsPerSet() {
 		this.repsPerSet = BigDecimal.valueOf(this.totalReps)
 				.divide(BigDecimal.valueOf(this.sets));
+	}
+	
+	public String getExerciseName() {
+		return exerciseName;
+	}
+	
+	public void setExerciseName(String exerciseName) {
+		this.exerciseName = exerciseName;
 	}
 
 }

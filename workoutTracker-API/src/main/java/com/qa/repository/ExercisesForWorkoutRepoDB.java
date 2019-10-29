@@ -19,14 +19,20 @@ public class ExercisesForWorkoutRepoDB implements ExercisesForWorkoutRepo {
 	
 	ExerciseRepo er;
 	
+	public Exercise addExerciseToEfw(ExercisesForWorkout efw, String exerciseName) {
+		TypedQuery<Exercise> tQ = em.createQuery(
+				"select exercise from Exercise exercise where exerciseName = '"
+				+ exerciseName + "'", Exercise.class);
+		Exercise exercise = tQ.getSingleResult();
+		exercise.addExercises(efw);
+		return exercise;
+	}
+	
 	@Transactional(value = TxType.REQUIRED)
 	public Workout addingBothExerciseAndWorkout(ExercisesForWorkout efw, int workoutId, String exerciseName) {
 		efw.setRepsPerSet();
 		Workout workout = em.find(Workout.class, workoutId);
-		TypedQuery<Exercise> tQ = em.createQuery(
-				"select exercise from Exercise exercise where exerciseName = '" + exerciseName + "'", Exercise.class);
-		Exercise exercise = tQ.getSingleResult();
-		exercise.addExercises(efw);
+		addExerciseToEfw(efw, exerciseName);
 		workout.addExercises(efw);
 		return workout;
 	}
@@ -44,9 +50,11 @@ public class ExercisesForWorkoutRepoDB implements ExercisesForWorkoutRepo {
 	}
 
 	@Transactional(value =  TxType.REQUIRED)
-	public ExercisesForWorkout changeExerciseDetails(int id, ExercisesForWorkout newExercise) {
+	public ExercisesForWorkout changeExerciseDetails(int id, ExercisesForWorkout newExercise,
+			String exerciseName) {
 		ExercisesForWorkout efw = findExercise(id);
-		efw.setAll(newExercise);
+		addExerciseToEfw(efw, exerciseName);
+		efw.setAll(newExercise, exerciseName);
 		return efw;
 	}
 

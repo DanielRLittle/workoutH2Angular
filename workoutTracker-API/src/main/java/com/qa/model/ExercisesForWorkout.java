@@ -28,11 +28,12 @@ public class ExercisesForWorkout {
 	
 	private String exerciseName;
 	
-	public void setAll(ExercisesForWorkout newExercise) {
+	public void setAll(ExercisesForWorkout newExercise, String exerciseName) {
 		this.weight = newExercise.weight;
 		this.sets = newExercise.sets;
 		this.totalReps = newExercise.totalReps;
 		this.setRepsPerSet();
+		this.exerciseName = exerciseName;
 	}
 
 	public int getId() {

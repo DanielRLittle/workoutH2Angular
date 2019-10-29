@@ -81,10 +81,10 @@ public class ExercisesForWorkoutEndPoints {
 	@Consumes({"application/json"})
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/efw/{exercisesForWorkout_id}/{exercise_name}")
-	public Response updateExercise(ExercisesForWorkout newExercise, @PathParam("exercisesForWorkout_id") int id,
+	public Response updateExercise(ExercisesForWorkout newExerciseForWorkout, @PathParam("exercisesForWorkout_id") int id,
 			@PathParam("exercise_name") String exerciseName) {
 		checkExercise(id);
-		ExercisesForWorkout efw = efwr.changeExerciseDetails(id, newExercise);
+		ExercisesForWorkout efw = efwr.changeExerciseDetails(id, newExerciseForWorkout, exerciseName);
 		return Response.accepted(efw).build();
 	}
 	

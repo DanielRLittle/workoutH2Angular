@@ -13,7 +13,7 @@ public interface ExercisesForWorkoutRepo {
 	
 	public List<ExercisesForWorkout> findExerciseByWorkout(int id);
 	
-	public ExercisesForWorkout changeExerciseDetails(int id, ExercisesForWorkout newExercise);
+	public ExercisesForWorkout changeExerciseDetails(int id, ExercisesForWorkout newExercise, String exerciseName);
 	
 	public void deleteExercise(int id);
 

@@ -22,7 +22,7 @@ public class User {
 	private int age;
 	
 	@OneToMany(cascade = (CascadeType.ALL), fetch = (FetchType.EAGER))
-	@JoinColumn(name = "User_id")
+	@JoinColumn(name = "User_Id")
 	private Set<Workout> workouts;
 	
 	public int getId() {

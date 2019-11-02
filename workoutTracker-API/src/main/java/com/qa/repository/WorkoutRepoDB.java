@@ -1,6 +1,7 @@
 package com.qa.repository;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -11,7 +12,7 @@ import com.qa.model.User;
 import com.qa.model.Workout;
 
 @Transactional(value = TxType.SUPPORTS)
-public class WorkoutRepoDB implements WorkoutRepo{
+public class WorkoutRepoDB implements WorkoutRepo {
 	
 	
 	@PersistenceContext(unitName = "myPU")
@@ -46,6 +47,5 @@ public class WorkoutRepoDB implements WorkoutRepo{
 	public void deleteWorkout(int id) {
 		em.remove(findWorkout(id));
 	}
-	
 	
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.qa.model.User;
 
-public class GettersSetters {
+public class UserGettersSetters {
 
 	User user;
 	

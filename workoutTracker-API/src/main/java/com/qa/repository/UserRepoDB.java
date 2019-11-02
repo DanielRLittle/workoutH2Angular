@@ -11,7 +11,7 @@ import javax.transaction.Transactional.TxType;
 import com.qa.model.User;
 
 @Transactional(value = TxType.SUPPORTS)
-public class UserRepoDB implements UserRepo{
+public class UserRepoDB implements UserRepo {
 
 	@PersistenceContext(unitName = "myPU")
 	private EntityManager em;

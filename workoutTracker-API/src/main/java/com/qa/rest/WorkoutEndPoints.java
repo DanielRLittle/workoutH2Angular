@@ -1,6 +1,7 @@
 package com.qa.rest;
 
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -27,6 +28,27 @@ public class WorkoutEndPoints {
 	@Inject
 	UserRepo ur;
 	
+	public Response checkWorkout(int id) {
+		if (wr.findWorkout(id).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		else {
+			return null;
+		}
+	}
+	
+	@PUT
+	@Consumes({"application/json"})
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/workout/{user_id}")
+	public Response addingWorkout(Workout workout, @PathParam("user_id") int id) {
+		if (ur.readUser(id).equals(null)) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		User user = wr.addWorkout(workout, id);
+		return Response.accepted(user).build();
+	}
+	
 	@GET
 	@Path("/workouts/{workout_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -52,25 +74,13 @@ public class WorkoutEndPoints {
 	@PUT
 	@Consumes({"application/json"})
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/workout/{user_id}")
-	public Response addingWorkout(Workout workout, @PathParam("user_id") int id) {
-		if (ur.readUser(id).equals(null)) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
-		User user = wr.addWorkout(workout, id);
-		return Response.ok(user).build();
-	}
-	
-	@PUT
-	@Consumes({"application/json"})
-	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/workouts/{workout_id}")
 	public Response updateWorkout(Workout newWorkout, @PathParam("workout_id") int id) {
 		if (wr.findWorkout(id).equals(null)) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		Workout w = wr.changeWorkout(id, newWorkout);
-		return Response.ok(w).build();
+		return Response.accepted(w).build();
 	}
 	
 	@DELETE

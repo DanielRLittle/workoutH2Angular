@@ -17,4 +17,5 @@ public interface UserRepo {
 	public User updateUser(int id, User newUser);
 	
 	public void deleteUser(int id);
+	
 }

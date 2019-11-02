@@ -3,10 +3,8 @@ package com.qa.model;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class ExercisesForWorkout {
@@ -14,9 +12,6 @@ public class ExercisesForWorkout {
 	@Id
 	@GeneratedValue
 	private int id;
-	
-//	@ManyToOne
-//	private Exercise exercise;
 	
 	private BigDecimal weight;
 	
@@ -43,14 +38,6 @@ public class ExercisesForWorkout {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-//	public Exercise getExercise() {
-//		return exercise;
-//	}
-//
-//	public void setExercise(Exercise exercise) {
-//		this.exercise = exercise;
-//	}
 
 	public BigDecimal getWeight() {
 		return weight;
